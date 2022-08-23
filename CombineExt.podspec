@@ -9,14 +9,17 @@ Pod::Spec.new do |s|
     s.homepage     = "https://github.com/CombineCommunity/CombineExt"
     s.license      = { :type => "MIT", :file => "LICENSE" }
     s.authors      = { "Combine Community" => "https://github.com/CombineCommunity", "Shai Mishali" => "freak4pc@gmail.com" }
-  
-    s.ios.deployment_target = '10.0'
-    s.osx.deployment_target = '10.12'
-    s.watchos.deployment_target = '3.0'
-    s.tvos.deployment_target = '10.0'
-  
-    s.source       = { :git => "https://github.com/CombineCommunity/CombineExt.git", :tag => s.version }
+
+    s.ios.deployment_target = '12.0'
+    s.osx.deployment_target = '10.14'
+    s.watchos.deployment_target = '5.0'
+    s.tvos.deployment_target = '12.0'
+
+    s.source       = { :git => "https://github.com/pavelosipov/CombineExt.git", :tag => s.version }
     s.source_files = 'Sources/**/*.swift'
-    s.frameworks   = ['Combine']
-    s.swift_version = '5.1'
+    s.swift_version = '5.6'
+
+    s.dependency 'OpenCombine'
+    s.dependency 'OpenCombineDispatch'
+    s.dependency 'OpenCombineFoundation'
 end
