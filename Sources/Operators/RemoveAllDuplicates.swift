@@ -6,10 +6,8 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output: Hashable {
     /// De-duplicates _all_ published value events, as opposed
     /// to pairwise with `Publisher.removeDuplicates`.
@@ -25,7 +23,6 @@ public extension Publisher where Output: Hashable {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output: Equatable {
     /// `Publisher.removeAllDuplicates` de-duplicates _all_ published `Hashable`-conforming value events, as opposed to pairwise with `Publisher.removeDuplicates`.
     ///
@@ -38,7 +35,6 @@ public extension Publisher where Output: Equatable {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// De-duplicates _all_ published value events, along the provided `by` comparator, as opposed to pairwise with `Publisher.removeDuplicates(by:)`.
     ///
@@ -65,4 +61,3 @@ public extension Publisher {
         }
     }
 }
-#endif

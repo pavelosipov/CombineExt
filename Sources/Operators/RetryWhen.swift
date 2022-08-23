@@ -5,10 +5,8 @@
 //  Created by Daniel Tartaglia on 3/21/20.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// Repeats the source publisher on error when the notifier emits a next value. If the source publisher errors and the notifier completes, it will complete the source sequence.
     ///
@@ -20,7 +18,6 @@ public extension Publisher {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publishers {
     class RetryWhen<Upstream, RetryTrigger, Output, Failure>: Publisher where Upstream: Publisher, Upstream.Output == Output, Upstream.Failure == Failure, RetryTrigger: Publisher {
         typealias ErrorTrigger = (AnyPublisher<Upstream.Failure, Never>) -> RetryTrigger
@@ -39,9 +36,8 @@ public extension Publishers {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publishers.RetryWhen {
-    class Subscription<Downstream>: Combine.Subscription where Downstream: Subscriber, Downstream.Input == Upstream.Output, Downstream.Failure == Upstream.Failure {
+    class Subscription<Downstream>: OpenCombine.Subscription where Downstream: Subscriber, Downstream.Input == Upstream.Output, Downstream.Failure == Upstream.Failure {
         private let upstream: Upstream
         private let downstream: Downstream
         private let errorSubject = PassthroughSubject<Upstream.Failure, Never>()
@@ -94,10 +90,8 @@ extension Publishers.RetryWhen {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publishers.RetryWhen.Subscription: CustomStringConvertible {
     var description: String {
         return "RetryWhen.Subscription<\(Output.self), \(Failure.self)>"
     }
 }
-#endif

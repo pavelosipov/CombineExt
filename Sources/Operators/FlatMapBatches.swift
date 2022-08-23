@@ -6,10 +6,8 @@
 //  Copyright © 2021 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Collection where Element: Publisher {
     /// Subscribes to the receiver’s contained publishers `size` at a time
     /// and outputs their results in `size`-sized batches, while maintaining
@@ -41,4 +39,3 @@ public extension Collection where Element: Publisher {
             .eraseToAnyPublisher()
     }
 }
-#endif

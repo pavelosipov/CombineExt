@@ -6,9 +6,7 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
 /// Represents a Combine Event
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public enum Event<Output, Failure: Swift.Error> {
     case value(Output)
     case failure(Failure)
@@ -16,7 +14,6 @@ public enum Event<Output, Failure: Swift.Error> {
 }
 
 // MARK: - Equatable Conformance
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Event: Equatable where Output: Equatable, Failure: Equatable {
     static public func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
@@ -33,7 +30,6 @@ extension Event: Equatable where Output: Equatable, Failure: Equatable {
 }
 
 // MARK: - Friendly Output
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Event: CustomStringConvertible {
     public var description: String {
         switch self {
@@ -50,7 +46,6 @@ extension Event: CustomStringConvertible {
 // MARK: - Event Convertible
 
 /// A protocol representing `Event` convertible types
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public protocol EventConvertible {
     associatedtype Output
     associatedtype Failure: Swift.Error
@@ -58,8 +53,6 @@ public protocol EventConvertible {
     var event: Event<Output, Failure> { get }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Event: EventConvertible {
     public var event: Event<Output, Failure> { self }
 }
-#endif

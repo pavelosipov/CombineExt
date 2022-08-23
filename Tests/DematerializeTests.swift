@@ -8,10 +8,9 @@
 
 #if !os(watchOS)
 import XCTest
-import Combine
+import OpenCombine
 import CombineExt
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 class DematerializeTests: XCTestCase {
     var subscription: AnyCancellable?
     var values = [String]()
@@ -119,7 +118,6 @@ class DematerializeTests: XCTestCase {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension DematerializeTests {
     func makeSubscriber(demand: Subscribers.Demand) -> AnySubscriber<String, MyError> {
         AnySubscriber(

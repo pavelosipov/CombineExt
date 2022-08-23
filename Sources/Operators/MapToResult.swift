@@ -6,10 +6,8 @@
 //  Copyright © 2021 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// Transform a publisher with concrete Output and Failure types
     /// to a new publisher that wraps Output and Failure in Result,
@@ -21,5 +19,3 @@ public extension Publisher {
             .eraseToAnyPublisher()
     }
 }
-
-#endif

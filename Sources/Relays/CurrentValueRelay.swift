@@ -6,8 +6,7 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
 /// A relay that wraps a single value and publishes a new element whenever the value changes.
 ///
@@ -15,7 +14,6 @@ import Combine
 /// It cannot send a failure event.
 /// 
 /// - note: Unlike PassthroughRelay, CurrentValueRelay maintains a buffer of the most recently published value.
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public class CurrentValueRelay<Output>: Relay {
     public var value: Output { storage.value }
     private let storage: CurrentValueSubject<Output, Never>
@@ -56,9 +54,8 @@ public class CurrentValueRelay<Output>: Relay {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension CurrentValueRelay {
-    class Subscription<Upstream: Publisher, Downstream: Subscriber>: Combine.Subscription where Upstream.Output == Downstream.Input, Upstream.Failure == Downstream.Failure {
+    class Subscription<Upstream: Publisher, Downstream: Subscriber>: OpenCombine.Subscription where Upstream.Output == Downstream.Input, Upstream.Failure == Downstream.Failure {
         private var sink: Sink<Upstream, Downstream>?
         var shouldForwardCompletion: Bool {
             get { sink?.shouldForwardCompletion ?? false }
@@ -88,7 +85,6 @@ private extension CurrentValueRelay {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension CurrentValueRelay {
     class Sink<Upstream: Publisher, Downstream: Subscriber>: CombineExt.Sink<Upstream, Downstream> {
         var shouldForwardCompletion = false
@@ -98,4 +94,3 @@ private extension CurrentValueRelay {
         }
     }
 }
-#endif

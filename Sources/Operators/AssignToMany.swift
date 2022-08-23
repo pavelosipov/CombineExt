@@ -6,10 +6,8 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Self.Failure == Never {
     /// Assigns each element from a Publisher to properties of the provided objects
     ///
@@ -49,4 +47,3 @@ public extension Publisher where Self.Failure == Never {
         })
     }
 }
-#endif

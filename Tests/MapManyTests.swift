@@ -8,9 +8,8 @@
 
 #if !os(watchOS)
 import XCTest
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 class MapManyTests: XCTestCase {
     var subscription: AnyCancellable!
 
@@ -77,7 +76,6 @@ class MapManyTests: XCTestCase {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension MapManyTests {
     enum MapManyError: Error {
         case anErrorCase

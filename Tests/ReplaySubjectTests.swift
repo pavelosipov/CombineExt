@@ -6,11 +6,10 @@
 //
 
 #if !os(watchOS)
-import Combine
+import OpenCombine
 @testable import CombineExt
 import XCTest
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class ReplaySubjectTests: XCTestCase {
     private var subscriptions = Set<AnyCancellable>()
 
@@ -392,6 +391,7 @@ final class ReplaySubjectTests: XCTestCase {
         XCTAssertTrue(subject.subscriptions.isEmpty)
     }
 
+    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func testReplayOrderThreadSafety() async {
         continueAfterFailure = false
         // Loop to ensure any race condition is caught.

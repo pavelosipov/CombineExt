@@ -8,10 +8,9 @@
 
 #if !os(watchOS)
 import XCTest
-import Combine
+import OpenCombine
 import CombineExt
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 class CurrentValueRelayTests: XCTestCase {
     private var relay: CurrentValueRelay<String>?
     private var values = [String]()
@@ -240,7 +239,7 @@ class CurrentValueRelayTests: XCTestCase {
         XCTAssertTrue(ContainerClass.receivedCompletion)
         XCTAssertFalse(ContainerClass.receivedCancel)
     }
-    
+
     func testBothStoredObjectsAreDeallocatedWhenRelayAndWithLatestFromOperatorAreDeallocatedAndDeclaredBeforeCancellables() {
         final class ContainerClass {
             static var receivedCompletion = false
@@ -282,7 +281,7 @@ class CurrentValueRelayTests: XCTestCase {
         XCTAssertTrue(StoredObject2.storedObjectReleased)
         XCTAssertNil(container)
     }
-    
+
     func testBothStoredObjectsAreDeallocatedWhenRelayAndWithLatestFromOperatorAreDeallocatedAndDeclaredAfterCancellables() {
         final class ContainerClass {
             static var receivedCompletion = false

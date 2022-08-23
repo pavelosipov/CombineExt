@@ -1,4 +1,4 @@
-# CombineExt
+# CombineExt based on OpenCombine
 
 <p align="center">
 <img src="https://github.com/CombineCommunity/CombineExt/raw/main/Resources/logo.png" width="45%">
@@ -39,7 +39,7 @@ All operators, utilities and helpers respect Combine's publisher contract, inclu
 * [share(replay:)](#sharereplay)
 * [prefix(duration:tolerance:​on:options:)](#prefixduration)
 * [prefix(while:behavior:​)](#prefixwhilebehavior)
-* [toggle()](#toggle)   
+* [toggle()](#toggle)
 * [nwise(_:) and pairwise()](#nwise)
 * [ignoreOutput(setOutputType:)](#ignoreOutputsetOutputType)
 * [ignoreFailure](#ignoreFailure)
@@ -473,11 +473,11 @@ Projects each element of a publisher collection into a new publisher collection 
 
 ```swift
 let intArrayPublisher = PassthroughSubject<[Int], Never>()
-    
+
 intArrayPublisher
   .mapMany(String.init)
   .sink(receiveValue: { print($0) })
-    
+
 intArrayPublisher.send([10, 2, 2, 4, 3, 8])
 ```
 
@@ -530,7 +530,7 @@ let replayedPublisher = subject
 
 subscription1 = replayedPublisher
   .sink(receiveValue: { print("first subscriber: \($0)") })
-  
+
 subject.send(1)
 subject.send(2)
 subject.send(3)
@@ -562,7 +562,7 @@ let subject = PassthroughSubject<Int, Never>()
 subscription = subject
   .prefix(duration: 0.5, on: DispatchQueue.main)
   .sink(receiveValue: { print($0) })
-  
+
 subject.send(1)
 subject.send(2)
 subject.send(3)
@@ -596,7 +596,7 @@ subscription = subject
     receivecompletion: { print($0) },
     receiveValue: { print($0) }
   )
-  
+
 subject.send(0)
 subject.send(2)
 subject.send(4)
@@ -621,7 +621,7 @@ let subject = PassthroughSubject<Bool, Never>()
 subscription = subject
   .toggle()
   .sink(receiveValue: { print($0) })
-  
+
 subject.send(true)
 subject.send(false)
 subject.send(true)
@@ -645,7 +645,7 @@ let subject = PassthroughSubject<Int, Never>()
 subscription = subject
   .nwise(3)
   .sink(receiveValue: { print($0) })
-  
+
 subject.send(1)
 subject.send(2)
 subject.send(3)
@@ -707,7 +707,7 @@ CombineExt provides a couple of overloads to ignore errors and optionally specif
 
 ```swift
 enum AnError {
-  case someError 
+  case someError
 }
 
 let subject = PassthroughSubject<Int, AnError>()
@@ -804,14 +804,14 @@ AnyPublisher<String, MyError>.create { subscriber in
   // Values
   subscriber.send("Hello")
   subscriber.send("World!")
-  
+
   // Complete with error
   subscriber.send(completion: .failure(MyError.someError))
-  
+
   // Or, complete successfully
   subscriber.send(completion: .finished)
 
-  return AnyCancellable { 
+  return AnyCancellable {
     // Perform cleanup
   }
 }
@@ -820,7 +820,7 @@ AnyPublisher<String, MyError>.create { subscriber in
 You can also use an `AnyPublisher` initializer with the same signature:
 
 ```swift
-AnyPublisher<String, MyError> { subscriber in 
+AnyPublisher<String, MyError> { subscriber in
     /// ...
     return AnyCancellable { }
 ```
@@ -920,6 +920,6 @@ subject.send(5)
 
 ## License
 
-MIT, of course ;-) See the [LICENSE](LICENSE) file. 
+MIT, of course ;-) See the [LICENSE](LICENSE) file.
 
 The Apple logo and the Combine framework are property of Apple Inc.

@@ -8,9 +8,8 @@
 
 #if !os(watchOS)
 import XCTest
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 class FilterManyTests: XCTestCase {
     var subscription: AnyCancellable!
     
@@ -67,7 +66,6 @@ private func isPair(_ value: Int) -> Bool {
     value.isMultiple(of: 2)
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension FilterManyTests {
     enum FilterManyError: Error {
         case anErrorCase

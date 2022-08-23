@@ -6,11 +6,10 @@
 //
 
 #if !os(watchOS)
-import Combine
+import OpenCombine
 import CombineExt
 import XCTest
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class CombineLatestManyTests: XCTestCase {
     private var subscription: AnyCancellable!
 

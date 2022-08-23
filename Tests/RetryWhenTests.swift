@@ -7,10 +7,9 @@
 
 #if !os(watchOS)
 import XCTest
-import Combine
+import OpenCombine
 import CombineExt
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 class RetryWhenTests: XCTestCase {
     var subscription: AnyCancellable!
 

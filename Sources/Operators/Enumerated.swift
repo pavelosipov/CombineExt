@@ -1,7 +1,5 @@
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// Enumerates the elements of a publisher.
     /// - parameter initial: Initial index, default is 0.
@@ -11,7 +9,6 @@ public extension Publisher {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publishers {
     /// A publisher that enumerates the elements of another publisher by combining the index and element into a tuple.
     struct Enumerated<Upstream: Publisher>: Publisher {
@@ -32,7 +29,6 @@ public extension Publishers {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension Publishers.Enumerated {
     final class Inner<Downstream: Subscriber>: Subscriber
     where Downstream.Input == Output, Downstream.Failure == Upstream.Failure {
@@ -61,4 +57,3 @@ private extension Publishers.Enumerated {
         }
     }
 }
-#endif

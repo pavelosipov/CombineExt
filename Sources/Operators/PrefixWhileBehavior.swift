@@ -6,8 +6,7 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 import Foundation
 
 /// Whether to include the first element that doesn’t pass
@@ -20,7 +19,6 @@ public enum PrefixWhileBehavior {
     case exclusive
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// An overload on `Publisher.prefix(while:)` that allows for inclusion of the first element that doesn’t pass the `while` predicate.
     ///
@@ -49,7 +47,6 @@ public extension Publisher {
         }
     }
 }
-#endif
 
 // MARK: - Helpers
 

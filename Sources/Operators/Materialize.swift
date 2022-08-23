@@ -6,10 +6,8 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// Converts any publisher to a publisher of its events
     ///
@@ -23,7 +21,6 @@ public extension Publisher {
 }
 
 // MARK: - Materialized Operators
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output: EventConvertible, Failure == Never {
     /// Given a materialized publisher, publish only the emitted
     /// upstream values, omitting failures
@@ -51,7 +48,6 @@ public extension Publisher where Output: EventConvertible, Failure == Never {
 }
 
 // MARK: - Publisher
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publishers {
     /// A publisher which takes an upstream publisher and emits its events,
     /// wrapped in `Event<Output, Failure>`
@@ -75,9 +71,8 @@ public extension Publishers {
 }
 
 // MARK: - Subscription
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension Publishers.Materialize {
-    class Subscription<Downstream: Subscriber>: Combine.Subscription where Downstream.Input == Event<Upstream.Output, Upstream.Failure>, Downstream.Failure == Never {
+    class Subscription<Downstream: Subscriber>: OpenCombine.Subscription where Downstream.Input == Event<Upstream.Output, Upstream.Failure>, Downstream.Failure == Never {
         private var sink: Sink<Downstream>?
 
         init(upstream: Upstream,
@@ -99,7 +94,6 @@ private extension Publishers.Materialize {
 }
 
 // MARK: - Sink
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension Publishers.Materialize {
     class Sink<Downstream: Subscriber>: CombineExt.Sink<Upstream, Downstream>
     where Downstream.Input == Event<Upstream.Output, Upstream.Failure>, Downstream.Failure == Never {
@@ -120,10 +114,8 @@ private extension Publishers.Materialize {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publishers.Materialize.Subscription: CustomStringConvertible {
     var description: String {
         return "Materialize.Subscription<\(Downstream.Input.Output.self), \(Downstream.Input.Failure.self)>"
     }
 }
-#endif

@@ -6,10 +6,8 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output: EventConvertible, Failure == Never {
     /// Converts any previously-materialized publisher into its original form
     ///
@@ -20,7 +18,6 @@ public extension Publisher where Output: EventConvertible, Failure == Never {
 }
 
 // MARK: - Publisher
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publishers {
     /// A publisher which takes a materialized upstream publisher and converts
     /// the wrapped events back into their original form
@@ -40,10 +37,9 @@ public extension Publishers {
     }
 }
 
-// MARK: - Subscrription
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+// MARK: - Subscription
 private extension Publishers.Dematerialize {
-    class Subscription<Downstream: Subscriber>: Combine.Subscription
+    class Subscription<Downstream: Subscriber>: OpenCombine.Subscription
     where Downstream.Input == Upstream.Output.Output, Downstream.Failure == Upstream.Output.Failure {
         private var sink: Sink<Downstream>?
 
@@ -64,7 +60,6 @@ private extension Publishers.Dematerialize {
 }
 
 // MARK: - Sink
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension Publishers.Dematerialize {
     class Sink<Downstream: Subscriber>: CombineExt.Sink<Upstream, Downstream>
     where Downstream.Input == Upstream.Output.Output, Downstream.Failure == Upstream.Output.Failure {
@@ -85,10 +80,8 @@ private extension Publishers.Dematerialize {
     }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publishers.Dematerialize.Subscription: CustomStringConvertible {
     var description: String {
         return "Dematerialize.Subscription<\(Downstream.Input.self), \(Downstream.Failure.self)>"
     }
 }
-#endif

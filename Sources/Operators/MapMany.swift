@@ -6,10 +6,8 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if canImport(Combine)
-import Combine
+import OpenCombine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher where Output: Collection {
     /// Projects each element of a publisher collection into a new publisher collection form.
     ///
@@ -36,4 +34,3 @@ public extension Publisher where Output: Collection {
         map { $0.map(transform) }
     }
 }
-#endif

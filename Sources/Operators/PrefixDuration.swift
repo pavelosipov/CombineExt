@@ -6,11 +6,10 @@
 //  Copyright © 2020 Combine Community. All rights reserved.
 //
 
-#if !(os(iOS) && (arch(i386) || arch(arm))) && canImport(Combine)
-import Combine
+#if !(os(iOS) && (arch(i386) || arch(arm)))
+import OpenCombine
 import Foundation
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publisher {
     /// Republishes elements for a specified duration.
     ///
@@ -21,7 +20,7 @@ public extension Publisher {
     ///   - options: The scheduler options for the underlying timer.
     ///
     /// - returns: A publisher that republishes up to the specified duration.
-    func prefix<S: Scheduler>(
+    func prefix<S: OpenCombine.Scheduler>(
         duration: S.SchedulerTimeType.Stride,
         tolerance: S.SchedulerTimeType.Stride? = nil,
         on scheduler: S,

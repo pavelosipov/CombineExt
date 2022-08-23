@@ -7,11 +7,10 @@
 //
 
 #if !os(watchOS)
-import Combine
+import OpenCombine
 import CombineExt
 import XCTest
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class OptionalTests: XCTestCase {
     private var subscription: AnyCancellable!
 
@@ -20,6 +19,7 @@ final class OptionalTests: XCTestCase {
         var completion: Subscribers.Completion<Never>?
 
         subscription = Optional(1)
+            .ocombine
             .publisher
             .sink(receiveCompletion: { completion = $0 },
                   receiveValue: { results.append($0) })
@@ -33,6 +33,7 @@ final class OptionalTests: XCTestCase {
         var completion: Subscribers.Completion<Never>?
 
         subscription = Optional<Int>.none
+            .ocombine
             .publisher
             .sink(receiveCompletion: { completion = $0 },
                   receiveValue: { results.append($0) })
